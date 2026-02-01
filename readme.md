@@ -53,9 +53,10 @@ Or download the source files directly and place them in a single directory.
 
 ## Compilation
 
-Navigate to the directory containing the source files and compile:
+Navigate to the `src` directory and compile:
 
 ```bash
+cd src
 javac *.java
 ```
 
