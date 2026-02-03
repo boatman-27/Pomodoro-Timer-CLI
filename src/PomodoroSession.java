@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.AbstractMap;
 import java.util.EnumMap;
 import java.util.Map;
@@ -45,8 +46,11 @@ public class PomodoroSession {
   public Map.Entry<Phase, Phase> phaseCompleted() {
     Phase toPhase = null;
     Phase fromPhase = currentPhase;
+
     switch (currentPhase) {
-      case WORK -> toPhase = handleWorkCompleted();
+      case WORK -> {
+        toPhase = handleWorkCompleted();
+      }
       case SHORT_BREAK, LONG_BREAK -> startNextWorkOrLongBreak();
     }
     return new AbstractMap.SimpleEntry<>(fromPhase, toPhase);

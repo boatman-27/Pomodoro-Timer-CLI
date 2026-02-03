@@ -79,7 +79,7 @@ For convenience, you can create a shell alias to run the timer from anywhere.
 Add to your `~/.bashrc` or `~/.bash_profile`:
 
 ```bash
-alias pomo='cd /path/to/pomodoro-timer-cli && java Main'
+alias pomo='cd /path/to/pomodoro-timer-cli/src && java Main'
 ```
 
 Then reload your configuration:
@@ -93,13 +93,45 @@ source ~/.bashrc
 Add to your `~/.zshrc`:
 
 ```bash
-alias pomo='cd /path/to/pomodoro-timer-cli && java Main'
+alias pomo='cd /path/to/pomodoro-timer-cli/src && java Main'
 ```
 
 Then reload your configuration:
 
 ```bash
 source ~/.zshrc
+```
+
+#### Creating a More Advanced Alias
+
+For a cleaner experience that returns to your original directory:
+
+**Bash (`~/.bashrc` or `~/.bash_profile`):**
+
+```bash
+pomo() {
+  local current_dir
+  current_dir=$(pwd)
+
+  cd "/path/to/pomodoro-timer-cli/src" || return 1
+  java -cp . Main
+
+  cd "$current_dir"
+}
+```
+
+**Zsh (`~/.zshrc`):**
+
+```bash
+pomo() {
+  local current_dir
+  current_dir=$(pwd)
+
+  cd "/path/to/pomodoro-timer-cli/src" || return 1
+  java -cp . Main
+
+  cd "$current_dir"
+}
 ```
 
 After setting up the alias, simply type `pomo` in your terminal to launch the application.
